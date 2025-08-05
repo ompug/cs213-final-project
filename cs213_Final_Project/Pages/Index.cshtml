@@ -14,7 +14,14 @@ Aug. 4th, 2025
     <div class="container position-relative">
         <h1 class="display-4 fw-bold">Fargo Springs Spa</h1>
         <p class="lead mb-4">Your local destination for relaxation, wellness, and rejuvenating spa experiences in Fargo.</p>
-        <a class="btn btn-primary btn-lg" href="/Appointment">Let's get started!</a>
+        @using Microsoft.AspNetCore.Identity
+        @inject SignInManager<IdentityUser> SignInManager
+
+        <a class="btn btn-primary btn-lg"
+           href="@(SignInManager.IsSignedIn(User) ? "/Appointment" : "/Login")">
+            Book an appointment!
+        </a>
+
     </div>
 </section>
 

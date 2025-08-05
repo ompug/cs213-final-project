@@ -1,0 +1,92 @@
+﻿@page "/Login"
+@model LoginRegisterModel
+@{
+    ViewData["Title"] = "Login or Sign Up";
+    // Decide which form to show on page load
+    var showRegister = ViewData["ShowRegister"] as bool? == true;
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="text-center mb-4" id="form-title">
+                        @(showRegister ? "Sign Up" : "Log In")
+                    </h3>
+
+                    <form method="post" asp-page-handler="Login" id="login-form" style="display:@(showRegister ? "none" : "block")">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoginInput.Email" class="form-label">Email</label>
+                            <input asp-for="LoginInput.Email" class="form-control" />
+                            <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoginInput.Password" class="form-label">Password</label>
+                            <input asp-for="LoginInput.Password" type="password" class="form-control" />
+                            <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Log In</button>
+                    </form>
+
+                    <form method="post" asp-page-handler="Register" id="register-form" style="display:@(showRegister ? "block" : "none")">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="RegisterInput.Email" class="form-label">Email</label>
+                            <input asp-for="RegisterInput.Email" class="form-control" />
+                            <span asp-validation-for="RegisterInput.Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="RegisterInput.Password" class="form-label">Password</label>
+                            <input asp-for="RegisterInput.Password" type="password" class="form-control" />
+                            <span asp-validation-for="RegisterInput.Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="RegisterInput.ConfirmPassword" class="form-label">Confirm Password</label>
+                            <input asp-for="RegisterInput.ConfirmPassword" type="password" class="form-control" />
+                            <span asp-validation-for="RegisterInput.ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Create Account</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <a href="javascript:void(0)" id="toggle-link">
+                            @(showRegister
+                                                        ? "Already have an account? Log in"
+                                                        : "Don’t have an account? Sign up")
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const loginForm    = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const toggleLink   = document.getElementById("toggle-link");
+        const formTitle    = document.getElementById("form-title");
+
+        toggleLink.addEventListener("click", () => {
+            const isLogin = loginForm.style.display !== "none";
+            loginForm.style.display    = isLogin ? "none" : "block";
+            registerForm.style.display = isLogin ? "block" : "none";
+            formTitle.textContent      = isLogin ? "Sign Up" : "Log In";
+            toggleLink.textContent     = isLogin
+                ? "Already have an account? Log in"
+                : "Don’t have an account? Sign up";
+        });
+    </script>
+}
