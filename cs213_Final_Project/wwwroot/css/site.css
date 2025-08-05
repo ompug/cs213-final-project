@@ -51,3 +51,16 @@ body {
         position: relative;
     }
 
+.featured-service {
+    background-color: #f0f8ff; /* soft blue background */
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+    .featured-service:hover {
+        transform: scale(1.06);
+    }
+
+

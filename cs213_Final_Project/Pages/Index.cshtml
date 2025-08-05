@@ -1,4 +1,9 @@
-﻿@page
+﻿@* Spencer Lommel
+Aug. 4th, 2025
+*@
+
+
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home";
@@ -16,23 +21,49 @@
 
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Services we offer</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Manicure</h5>
-                <p>Treat your hands to a luxurious manicure designed to keep them looking and feeling their best...</p>
+        <h2 class="text-center mb-5">Services we offer</h2>
+        <div class="row justify-content-center">
+
+            <!-- Manicure Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Manicure</h5>
+                        <p class="card-text">
+                            Treat your hands to a luxurious manicure designed to keep them looking and feeling their best.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h5>Pedicure</h5>
-                <p>Give your feet the care they deserve with our rejuvenating pedicure. Includes nail trimming, exfoliation...</p>
+
+            <!-- Full Body Massage Card (the main one) -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-lg border-primary featured-service">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">Full Body Massage</h5>
+                        <p class="card-text">
+                            Relax and unwind with our full body massage that melts away tension and stress.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h5>Full Body Massage</h5>
-                <p>Relax and unwind with our full body massage that melts away tension and stress...</p>
+
+            <!-- Pedicure Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Pedicure</h5>
+                        <p class="card-text">
+                            Give your feet the care they deserve with our rejuvenating pedicure. Includes nail trimming, exfoliation.
+                        </p>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
+
 
 <section class="py-5 bg-light">
     <div class="container">
