@@ -1,107 +1,126 @@
-﻿@* Spencer Lommel
-Aug. 4th, 2025
-*@
-
-@page
+﻿@page
 @model cs213_Final_Project.Pages.Index1Model
 @{
+    ViewData["Title"] = "Book Appointment";
+    var minDate = DateTime.Today.ToString("yyyy-MM-dd");
 }
 
-@* @page
-@model BookingModel
-@{
-    ViewData["Title"] = "Book Appointment";
-} *@
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<!-- restore the page‐specific CSS -->
 <style>
     .booking-container {
         background: #f9f9f9;
         padding: 2rem;
         border-radius: 1rem;
     }
+
     .highlight-box {
         background-color: #e9d8fd;
         border-left: 5px solid #6f42c1;
         padding: 1rem;
         border-radius: 0.5rem;
     }
+
     .time-slot {
         padding: 0.75rem 1rem;
         border-radius: 0.5rem;
         background: #f0f0f0;
         cursor: pointer;
     }
-    .time-slot.selected {
-        background-color: #6f42c1;
-        color: white;
-        font-weight: bold;
-    }
-    .time-slot:hover {
-        background-color: #d6c1f5;
-    }
+
+        .time-slot.selected {
+            background-color: #6f42c1;
+            color: white;
+            font-weight: bold;
+        }
+
+        .time-slot:hover {
+            background-color: #d6c1f5;
+        }
 </style>
 
-<div class="container my-5 booking-container shadow">
-    <div class="d-flex justify-content-between mb-4">
-        <h2>Book your Spa Appointment</h2>
-        <a href="/" class="btn btn-outline-secondary">Back to Main Page</a>
-    </div>
-
-    <div class="row g-4">
-        <!-- Left: Booking Info -->
-        <div class="col-md-6">
-            <div class="highlight-box mb-4">
-                <h5 class="fw-bold">Book your Spa today!</h5>
-                <p class="mb-1">Schedule a 30 minute session to relax and rejuvenate.</p>
-                <small><i class="bi bi-info-circle-fill"></i> Walk-in appointments may have wait times.</small>
-            </div>
-
-            <div>
-                <h6>Choose a Date</h6>
-                <input type="date" class="form-control" id="appointmentDate" min="@DateTime.Now.ToString("yyyy-MM-dd")">
-            </div>
+<form method="post">
+    <div class="container my-5 booking-container shadow">
+        <div class="d-flex justify-content-between mb-4">
+            <h2>Book your Spa Appointment</h2>
+            <a href="/" class="btn btn-outline-secondary">Back to Main Page</a>
         </div>
 
-        <!-- Right: Time Slots & Staff -->
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body text-center">
-                    <img src="/assets/spa-staff/staff-2.jpg" class="team-photo" width="80" height="80" alt="Staff">
-                    <h6 class="fw-bold mb-1">Full Body Massage</h6>
-                    <p class="text-muted mb-0">
-                        with Jo Marinara</p>
-                    <small class="text-muted">30-40 minutes</small>
+        @* Hidden fields for static info *@
+        <input asp-for="SpaServiceType" type="hidden" />
+        <input asp-for="StaffName" type="hidden" />
+        <input asp-for="Duration" type="hidden" />
+
+        <div class="row g-4">
+            <!-- Left: Booking Info -->
+            <div class="col-md-6">
+                <div class="highlight-box mb-4">
+                    <h5 class="fw-bold">Book your Spa today!</h5>
+                    <p class="mb-1">Schedule a 30 minute session to relax and rejuvenate.</p>
+                    <small><i class="bi bi-info-circle-fill"></i> Walk-in appointments may have wait times.</small>
                 </div>
+
+                <div class="mb-3">
+                    <h6>Choose a Date</h6>
+                    <input asp-for="AppointmentDate"
+                           type="date"
+                           class="form-control"
+                           min="@minDate" />
+                    <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                </div>
+
             </div>
 
-            <h6 class="mb-3">Pick a Time</h6>
-            <div class="row row-cols-3 g-2">
-                <div class="col"><div class="time-slot">9:00 AM</div></div>
-                <div class="col"><div class="time-slot selected">9:30 AM</div></div>
-                <div class="col"><div class="time-slot">10:00 AM</div></div>
-                <div class="col"><div class="time-slot">10:30 AM</div></div>
-                <div class="col"><div class="time-slot">11:00 AM</div></div>
-                <div class="col"><div class="time-slot">1:00 PM</div></div>
-            </div>
+            <!-- Right: Time Slots & Staff -->
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="/assets/spa-staff/staff-2.jpg"
+                             class="team-photo mb-2"
+                             width="80" height="80"
+                             alt="Staff" />
+                        <h6 class="fw-bold mb-1">@Model.SpaServiceType</h6>
+                        <p class="text-muted mb-0">with @Model.StaffName</p>
+                        <small class="text-muted">@Model.Duration</small>
+                    </div>
+                </div>
 
-            <small class="d-block text-center text-muted mt-3">
-                All times in Central Time (US & Canada)
-            </small>
+                <h6 class="mb-3">Pick a Time</h6>
+                <input asp-for="AppointmentTime" type="hidden" />
+                <span asp-validation-for="AppointmentTime" class="text-danger"></span>
+
+                <div class="row row-cols-3 g-2">
+                    @foreach (var time in new[] { "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "1:00 PM" })
+                    {
+                        var cssClass = time == Model.AppointmentTime ? "time-slot selected" : "time-slot";
+                        <div class="col">
+                            <div class="@cssClass" data-time="@time">@time</div>
+                        </div>
+                    }
+                </div>
+
+                <small class="d-block text-center text-muted mt-3">
+                    All times in Central Time (US & Canada)
+                </small>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button>
         </div>
     </div>
+</form>
 
-    <div class="text-center mt-4">
-        <button class="btn btn-primary btn-lg">Confirm Booking</button>
-    </div>
-</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 
-<script>
-    // Time slot selector thing
-    document.querySelectorAll('.time-slot').forEach(el => {
-        el.addEventListener('click', () => {
-            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+    <script>
+        document.querySelectorAll('.time-slot').forEach(el => {
+          el.addEventListener('click', () => {
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
             el.classList.add('selected');
+            document.querySelector('input[name="AppointmentTime"]').value = el.dataset.time;
+          });
         });
-    });
-</script>
+    </script>
+}

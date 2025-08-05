@@ -1,0 +1,91 @@
+﻿@page
+@model cs213_Final_Project.Pages.MyAppointmentsModel
+@{
+    ViewData["Title"] = "My Appointments";
+}
+
+<style>
+    .appointment-card {
+        width: 100%;
+        max-width: 700px;
+        margin: 0.5rem auto; /* vertical spacing + center */
+    }
+</style>
+
+<div class="container my-5">
+    <h2 class="mb-4">My Appointments</h2>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4" id="apptTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab"
+                    data-bs-target="#upcoming" type="button" role="tab">
+                Upcoming (@Model.UpcomingAppointments.Count)
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="past-tab" data-bs-toggle="tab"
+                    data-bs-target="#past" type="button" role="tab">
+                Past (@Model.PastAppointments.Count)
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="apptTabContent">
+        <!-- Upcoming Tab -->
+        <div class="tab-pane fade show active" id="upcoming" role="tabpanel">
+            @if (!Model.UpcomingAppointments.Any())
+            {
+                <div class="alert alert-info">You have no upcoming appointments.</div>
+            }
+            else
+            {
+                @foreach (var appt in Model.UpcomingAppointments)
+                {
+                    <div class="card appointment-card shadow-sm">
+                        <div class="card-header bg-white border-0">
+                            <small class="text-muted">
+                                @appt.AppointmentDateTime.ToString("MMMM dd, yyyy - h:mm tt")
+                            </small>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@appt.SpaServiceType</h5>
+                            <p class="card-text mb-1">
+                                with <strong>@appt.StaffName</strong>
+                            </p>
+                            <p class="text-muted mb-0">@appt.Duration</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <!-- Past Tab -->
+        <div class="tab-pane fade" id="past" role="tabpanel">
+            @if (!Model.PastAppointments.Any())
+            {
+                <div class="alert alert-secondary">You have no past appointments.</div>
+            }
+            else
+            {
+                @foreach (var appt in Model.PastAppointments)
+                {
+                    <div class="card appointment-card border-light">
+                        <div class="card-header bg-light border-0">
+                            <small class="text-muted">
+                                @appt.AppointmentDateTime.ToString("MMMM dd, yyyy - h:mm tt")
+                            </small>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-muted">@appt.SpaServiceType</h5>
+                            <p class="card-text mb-1">
+                                with <strong>@appt.StaffName</strong>
+                            </p>
+                            <p class="text-muted mb-0">@appt.Duration</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

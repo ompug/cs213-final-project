@@ -29,14 +29,27 @@
                            style="width: 44px; height: 44px;">
                             <i class="bi bi-person-fill"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="/MyAppointments">My Appointments</a></li>
-                            <li>
-                                <form method="post" asp-area="" asp-page="/Logout">
-                                    <button type="submit" class="dropdown-item">Log out</button>
-                                </form>
-                            </li>
-                        </ul>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <!-- show email at top -->
+                        <li>
+                            <h6 class="dropdown-header">@User.Identity.Name</h6>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+
+                        <li>
+                            <a class="dropdown-item" href="/MyAppointments">
+                                My Appointments
+                            </a>
+                        </li>
+                        <li>
+                            <form method="post" asp-page="/Logout">
+                                <button type="submit" class="dropdown-item">
+                                    Log out
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+
                     </div>
                 }
                 else

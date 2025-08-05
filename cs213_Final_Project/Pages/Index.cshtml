@@ -18,7 +18,7 @@ Aug. 4th, 2025
         @inject SignInManager<IdentityUser> SignInManager
 
         <a class="btn btn-primary btn-lg"
-           href="@(SignInManager.IsSignedIn(User) ? "/Appointment" : "/Login")">
+           href="@(SignInManager.IsSignedIn(User) ? "/Booking" : "/Login")">
             Book an appointment!
         </a>
 
