@@ -1,0 +1,227 @@
+﻿@page
+@model ServicesModel
+@{
+    ViewData["Title"] = "Services - Fargo Springs Spa";
+}
+
+<div class="services-container">
+    <header class="services-header">
+        <h1>Our Services</h1>
+        <p class="subtitle">Relax, rejuvenate, and restore your natural beauty</p>
+    </header>
+
+    <div class="services-grid">
+        <!-- Full Body Massage -->
+        <div class="service-card">
+            <h2>Full Body Massage</h2>
+            <div class="service-duration">60 - 90 minutes</div>
+            <p class="service-description">
+                Escape into pure relaxation with our signature full body massage. Our skilled therapists use
+                a blend of Swedish and deep tissue techniques to release tension, improve circulation, and
+                restore balance to your mind and body. Choose from our selection of premium oils infused
+                with calming essential oils.
+            </p>
+            <div class="service-benefits">
+                <strong>Benefits:</strong> Stress relief, muscle tension release, improved circulation
+            </div>
+            <div class="service-price">Starting at $95</div>
+        </div>
+
+        <!-- Pedicure -->
+        <div class="service-card">
+            <h2>Luxury Pedicure</h2>
+            <div class="service-duration">45 - 60 minutes</div>
+            <p class="service-description">
+                Treat your feet to our luxurious pedicure experience. Soak in our therapeutic foot baths,
+                enjoy gentle exfoliation, cuticle care, and nail shaping. Complete with moisturizing treatment
+                and your choice of premium polish. Your feet will feel soft, smooth, and beautifully pampered.
+            </p>
+            <div class="service-benefits">
+                <strong>Includes:</strong> Foot soak, exfoliation, nail care, massage, polish application
+            </div>
+            <div class="service-price">Starting at $45</div>
+        </div>
+
+        <!-- Manicure -->
+        <div class="service-card">
+            <h2>Signature Manicure</h2>
+            <div class="service-duration">30 - 45 minutes</div>
+            <p class="service-description">
+                Perfect your nails with our signature manicure service. We'll shape, buff, and polish your
+                nails to perfection while pampering your hands with moisturizing treatments. Choose from our
+                extensive collection of colors or opt for a classic French manicure.
+            </p>
+            <div class="service-benefits">
+                <strong>Includes:</strong> Nail shaping, cuticle care, hand massage, base coat, polish, top coat
+            </div>
+            <div class="service-price">Starting at $35</div>
+        </div>
+
+        <!-- Facial Treatment -->
+        <div class="service-card">
+            <h2>Rejuvenating Facial</h2>
+            <div class="service-duration">60 minutes</div>
+            <p class="service-description">
+                Refresh and revitalize your skin with our customized facial treatment. We analyze your skin
+                type and concerns to provide the perfect combination of cleansing, exfoliation, extractions,
+                and hydrating masks. Leave with a radiant, healthy glow.
+            </p>
+            <div class="service-benefits">
+                <strong>Benefits:</strong> Deep cleansing, improved skin texture, hydration, anti-aging
+            </div>
+            <div class="service-price">Starting at $75</div>
+        </div>
+
+        <!-- Hot Stone Therapy -->
+        <div class="service-card">
+            <h2>Hot Stone Therapy</h2>
+            <div class="service-duration">75 minutes</div>
+            <p class="service-description">
+                Experience ultimate relaxation with our hot stone therapy. Smooth, heated stones are placed
+                on key points of your body to warm and relax muscles, while your therapist uses additional
+                stones to massage away tension and stress.
+            </p>
+            <div class="service-benefits">
+                <strong>Benefits:</strong> Deep muscle relaxation, stress relief, improved flexibility
+            </div>
+            <div class="service-price">Starting at $115</div>
+        </div>
+
+        <!-- Couples Package -->
+        <div class="service-card">
+            <h2>Couples Retreat</h2>
+            <div class="service-duration">90 minutes</div>
+            <p class="service-description">
+                Share a relaxing experience with someone special in our couples treatment room. Choose from
+                side-by-side massages, facials, or create your own custom package. Includes champagne and
+                chocolate-covered strawberries.
+            </p>
+            <div class="service-benefits">
+                <strong>Perfect for:</strong> Anniversaries, date nights, special celebrations
+            </div>
+            <div class="service-price">Starting at $220</div>
+        </div>
+    </div>
+
+    <div class="booking-section">
+        <h3>Ready to Book Your Service?</h3>
+        <p>Call us at <strong>(701) 555-RELAX</strong> or visit our front desk to schedule your appointment.</p>
+        <div class="hours">
+            <strong>Hours:</strong> Monday - Saturday 9AM - 8PM | Sunday 10AM - 6PM
+        </div>
+    </div>
+</div>
+
+<style>
+    .services-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        font-family: 'Georgia', serif;
+        line-height: 1.6;
+    }
+
+    .services-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #4a90e2;
+    }
+
+        .services-header h1 {
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        font-style: italic;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .service-card {
+        background: #fefefe;
+        border: 1px solid #d0e2f0;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+        display: none;
+    }
+
+    .service-card h2 {
+        color: #2c5aa0;
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    .service-duration {
+        text-align: center;
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        font-style: italic;
+    }
+
+    .service-description {
+        color: #555;
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .service-benefits {
+        background: #f0f6ff;
+        padding: 0.8rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .service-price {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #2c5aa0;
+        background: #e8f2ff;
+        padding: 0.5rem;
+        border-radius: 4px;
+    }
+
+    .booking-section {
+        background: #2c5aa0;
+        color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+        .booking-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .booking-section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+    .hours {
+        font-size: 0.95rem;
+        margin-top: 1rem;
+        opacity: 0.9;
+    }
+
+</style>
